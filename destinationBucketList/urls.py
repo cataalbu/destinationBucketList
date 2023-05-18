@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from destination.views import GetAllDestinationsView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('destinations/', GetAllDestinationsView.as_view())
 ]
