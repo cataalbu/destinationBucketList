@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from destination.views import GetAllDestinationsView
+from destination.views import GetPublicDestinationsView, AddPublicDestinationView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('destinations/', GetAllDestinationsView.as_view())
+    path('public-destinations/', GetPublicDestinationsView.as_view()),
+    path('add-public-destination/', AddPublicDestinationView.as_view(), name='add-public-destination'),
 ]
