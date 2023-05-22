@@ -1,7 +1,8 @@
 <!-- travelapp/templates/add_public_destination.html -->
-
 <form method="post">
     {% csrf_token %}
+    <a href="{% url 'LogoutView' %}">Logout</a>
+    <br><br>
     <label for="geolocation">Geolocation:</label>
     <input type="text" id="geolocation" name="geolocation" required><br>
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<form method="post" action="{% url 'LoginView' %}">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+    <br>
+    <input type="submit" value="Login">
+</form>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
