@@ -1,5 +1,6 @@
+<a href="{% url 'LogoutView' %}">Logout</a>
+<br><br>
 <h1>All Destinations</h1>
-
 <ul>
     {% for destination in destinations %}
         <li>{{ destination.title }}</li>

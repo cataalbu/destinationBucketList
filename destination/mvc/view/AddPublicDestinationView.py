@@ -1,19 +1,15 @@
-from django.shortcuts import render, redirect, reverse, resolve_url
+from django.shortcuts import render, redirect, resolve_url
 
 # Create your views here.
 from django.views import View
 
-from destination.models import Destination
+from destination.mvc.models.Destination import Destination
+from destination.mvc.services.LoginRequieredMixin import LoginRequiredMixin
+from destination.mvc.services.UserLoginRequired import UserLoginRequiredMixin
+from destination.mvc.services.AdminLoginRequired import AdminLoginRequiredMixin
 
 
-class GetPublicDestinationsView(View):
-    def get(self, request):
-        destinations = Destination.objects.filter(is_public=True)
-        context = {'destinations': destinations}
-        return render(request, 'destination.html', context)
-
-
-class AddPublicDestinationView(View):
+class AddPublicDestinationView(LoginRequiredMixin):
     def get(self, request):
         return render(request, 'add_public_destination.html')
 
@@ -25,7 +21,7 @@ class AddPublicDestinationView(View):
         is_public = True
 
         destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
-                                  arrival_date=None, departure_date=None, user_id=None,  is_public=False)
+                                  arrival_date=None, departure_date=None, user_id=None, is_public=False)
         destination.save()
 
         return redirect(resolve_url('/public-destinations/'))
