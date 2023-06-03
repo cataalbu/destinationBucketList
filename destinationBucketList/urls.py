@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path
 
 from destination.mvc.view.GetPublicDestinationsView import GetPublicDestinationsView
@@ -24,6 +25,7 @@ from destination.mvc.view.AddNewPrivateDestinationView import AddNewPrivateDesti
 from destination.mvc.view.AuthenticationView import LoginView, LogoutView
 
 urlpatterns = [
+    path('', lambda request: redirect('/login/')),
     path('admin/', admin.site.urls),
     path('public-destinations/', GetPublicDestinationsView.as_view()),
     path('private-destinations/', GetPrivateDestinationsView.as_view()),
