@@ -4,7 +4,7 @@ from django.views import View
 
 class LoginRequiredMixin(View):
     def dispatch(self, request, *args, **kwargs):
-        # if an user is not logged in, redirect him back to the login page
+        # if a user is not logged in, redirect him back to the login page
         session_key = request.session.get('session_key')
         # session =
         print(session_key)

@@ -37,6 +37,7 @@ class LoginView(View):
             session['user_id'] = user.pk
             session.save()
             request.session['session_key'] = session.session_key
+            request.session['user_id'] = user.pk
 
             if user.isAdmin:
                 return redirect(resolve_url('/public-destinations/'))

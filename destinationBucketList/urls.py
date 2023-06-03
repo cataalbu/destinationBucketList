@@ -18,13 +18,17 @@ from django.contrib import admin
 from django.urls import path
 
 from destination.mvc.view.GetPublicDestinationsView import GetPublicDestinationsView
+from destination.mvc.view.GetPrivateDestinationsView import GetPrivateDestinationsView
 from destination.mvc.view.AddPublicDestinationView import AddPublicDestinationView
+from destination.mvc.view.AddNewPrivateDestinationView import AddNewPrivateDestinationView
 from destination.mvc.view.AuthenticationView import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('public-destinations/', GetPublicDestinationsView.as_view()),
+    path('private-destinations/', GetPrivateDestinationsView.as_view()),
     path('add-public-destination/', AddPublicDestinationView.as_view(), name='add-public-destination'),
+    path('add-new-private-destination/', AddNewPrivateDestinationView.as_view(), name='add-new-private-destination'),
     path('login/', LoginView.as_view(), name='LoginView'),
     path('logout/', LogoutView.as_view(), name='LogoutView'),
 ]
