@@ -9,7 +9,8 @@ from destination.mvc.services.UserLoginRequired import UserLoginRequiredMixin
 from destination.mvc.services.AdminLoginRequired import AdminLoginRequiredMixin
 
 class GetPublicDestinationsView(LoginRequiredMixin):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         destinations = Destination.objects.filter(is_public=True)
         context = {'destinations': destinations}
         return render(request, 'destination.html', context)

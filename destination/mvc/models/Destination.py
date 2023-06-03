@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Destination(models.Model):
     geolocation = models.CharField(max_length=100)
     title = models.CharField(max_length=100)

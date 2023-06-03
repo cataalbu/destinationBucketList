@@ -7,7 +7,6 @@ class LoginRequiredMixin(View):
         # if a user is not logged in, redirect him back to the login page
         session_key = request.session.get('session_key')
         # session =
-        print(session_key)
         if not session_key:
             return redirect(resolve_url('/login/'))
         return super().dispatch(request, *args, **kwargs)
