@@ -4,7 +4,7 @@ from django.contrib import messages
 # Create your views here.
 from django.views import View
 
-from destination.models.User import GeneralUser
+from destination.models.user import GeneralUser
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sessions.backends.db import SessionStore

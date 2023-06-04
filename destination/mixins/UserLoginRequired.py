@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, resolve_url
 from django.views import View
-from destination.models.User import User
+from destination.models.user import User
 
 
 class UserLoginRequiredMixin(View):

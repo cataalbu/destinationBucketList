@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from destination.models.Destination import Destination
-from destination.models.User import GeneralUser
+from destination.models.destination import Destination
+from destination.models.user import GeneralUser
 
 
 class GetPublicDestinationsViewTestCase(TestCase):

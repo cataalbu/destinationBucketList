@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path
 
-from destination.views.PublicDestinationListView import PublicDestinationsListView
-from destination.views.AddPublicDestinationView import AddPublicDestinationView
-from destination.views.AuthenticationView import LoginView, LogoutView
-from destination.views.public_destination_detail import PublicDestinationDetailView
+from destination.views.authentication_views import LoginView, LogoutView
+
+from destination.views.public_destination_views import PublicDestinationDetailView, PublicDestinationsListView, \
+    PublicDestinationCreateView
 
 from destination.views.private_destination_views import PrivateDestinationListView, PrivateDestinationCreateView,\
     PrivateDestinationCreateFromPublicView, PrivateDestinationDetailView
@@ -30,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('public-destinations/', PublicDestinationsListView.as_view(), name='public_destination_list'),
     path('public-destinations/<int:id>', PublicDestinationDetailView.as_view(), name='public_destination_details'),
-    path('add-public-destination/', AddPublicDestinationView.as_view(), name='add_public_destination'),
+    path('add-public-destination/', PublicDestinationCreateView.as_view(), name='add_public_destination'),
     path('private-destinations/', PrivateDestinationListView.as_view(), name='private_destination_list'),
     path('private-destinations/<int:id>', PrivateDestinationDetailView.as_view(), name='private_destination_details'),
     path('add-private-from-public/<int:id>', PrivateDestinationCreateFromPublicView.as_view(),
