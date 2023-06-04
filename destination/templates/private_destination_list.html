@@ -1,0 +1,13 @@
+<a href="{% url 'LogoutView' %}">Logout</a>
+<br><br>
+<h1>All Destinations</h1>
+<ul>
+    {% for destination in destinations %}
+        <li> {{ destination.geolocation }}</li>
+        <li> {{ destination.title }}</li>
+        <li><img src="{{ destination.image }}" alt="Destination Image"></li>
+        <li> {{ destination.description }}</li>
+        <li> {{ destination.arrival_date }}</li>
+        <li> {{ destination.departure_date }}</li>
+    {% endfor %}
+</ul>
