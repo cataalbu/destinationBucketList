@@ -16,7 +16,9 @@
         <h1 class="title">Destination Bucket List</h1>
         <ul class="navigation-list">
             <li ><a href="{% url 'public_destination_list' %}" class="navigation-links" >Public destinations</a></li>
-            <li><a  href="{% url 'private_destination_list' %}" class="navigation-links" style="text-decoration: none">Private destinations</a></li>
+            {% if not is_admin %}
+                <li><a  href="{% url 'private_destination_list' %}" class="navigation-links" style="text-decoration: none">Private destinations</a></li>
+             {% endif %}
             <li><a href="{% url 'logout' %}" type="button" class="btn btn-outline-light">
                 Logout
             </a></li>

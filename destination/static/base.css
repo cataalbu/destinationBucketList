@@ -8,6 +8,7 @@ body {
     margin-bottom: 32px;
     background: #0081b8;
     color: white;
+    width: 100vw;
 }
 .navigation-list {
     display: flex;

@@ -1,11 +1,11 @@
 from django.views.generic import DetailView
-from destination.mvc.models.Destination import Destination
-from destination.mvc.services.LoginRequieredMixin import LoginRequiredMixin
+from destination.models.Destination import Destination
+from destination.mixins.LoginRequiredMixin import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 
 
 class PrivateDestinationDetailView(LoginRequiredMixin, DetailView):
-    template_name = 'private_destination_details.html'
+    template_name = 'private_destination/private_destination_details.html'
 
     def get_queryset(self):
         user_id = self.request.session.get('user_id')

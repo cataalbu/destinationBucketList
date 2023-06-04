@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path
 
-from destination.mvc.view.PublicDestinationListView import PublicDestinationsListView
-from destination.mvc.view.GetPrivateDestinationsView import GetPrivateDestinationsView
-from destination.mvc.view.AddPublicDestinationView import AddPublicDestinationView
-from destination.mvc.view.AddNewPrivateDestinationView import AddNewPrivateDestinationView
-from destination.mvc.view.AuthenticationView import LoginView, LogoutView
-from destination.mvc.view.private_destination_detail import PrivateDestinationDetailView
+from destination.view.PublicDestinationListView import PublicDestinationsListView
+from destination.view.GetPrivateDestinationsView import GetPrivateDestinationsView
+from destination.view.AddPublicDestinationView import AddPublicDestinationView
+from destination.view.AddNewPrivateDestinationView import AddNewPrivateDestinationView
+from destination.view.AuthenticationView import LoginView, LogoutView
+from destination.view.private_destination_detail import PrivateDestinationDetailView
+from destination.view.public_destination_detail import PublicDestinationDetailView
 
 urlpatterns = [
     path('', lambda request: redirect('/login/')),
@@ -31,8 +32,9 @@ urlpatterns = [
     path('public-destinations/', PublicDestinationsListView.as_view(), name='public_destination_list'),
     path('private-destinations/', GetPrivateDestinationsView.as_view(), name='private_destination_list'),
     path('private-destinations/<int:id>', PrivateDestinationDetailView.as_view(), name='private_destination_details'),
-    path('add-public-destination/', AddPublicDestinationView.as_view(), name='add-public-destination'),
-    path('add-new-private-destination/', AddNewPrivateDestinationView.as_view(), name='add-new-private-destination'),
+    path('public-destinations/<int:id>', PublicDestinationDetailView.as_view(), name='public_destination_details'),
+    path('add-public-destination/', AddPublicDestinationView.as_view(), name='add_public_destination'),
+    path('add-private-destination/', AddNewPrivateDestinationView.as_view(), name='add_private_destination'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]

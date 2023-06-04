@@ -1,9 +1,7 @@
-from django.http import HttpRequest
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 
-from destination.mvc.models.Destination import Destination
-from destination.mvc.models.User import GeneralUser
-from destination.mvc.view.PublicDestinationListView import PublicDestinationsListView
+from destination.models.Destination import Destination
+from destination.models.User import GeneralUser
 
 
 class GetPublicDestinationsViewTestCase(TestCase):

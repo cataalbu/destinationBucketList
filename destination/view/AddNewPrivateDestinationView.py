@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, resolve_url
-from destination.mvc.models.Destination import Destination
-from destination.mvc.services.LoginRequieredMixin import LoginRequiredMixin
+from destination.models.Destination import Destination
+from destination.mixins.LoginRequiredMixin import LoginRequiredMixin
 
 
 class AddNewPrivateDestinationView(LoginRequiredMixin):
     def get(self, request):
-        return render(request, 'add_private_destination.html')
+        return render(request, 'private_destination/add_private_destination.html')
 
     def post(self, request):
         geolocation = request.POST.get('geolocation')

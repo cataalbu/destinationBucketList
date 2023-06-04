@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-<link href=" ../static/public-destinations-list.css" rel="stylesheet">
+<link href="../../static/public-destinations-list.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
 <div class="w-100 p-3 d-flex flex-row-reverse">
-    <a href="#" type="button" class="btn btn-primary">Add private destination</a>
+    <a href="{% url 'add_private_destination' %}" type="button" class="btn btn-primary">Add private destination</a>
 </div>
 <div class="public-destination-list-container">
     {% for destination in destinations %}
-        <div class="card" style="width: 20rem;">
+        <div class="card mb-3" style="width: 20rem;">
             <img class="card-img-top" src="{{ destination.image }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ destination.title }}</h5>
                 <p class="card-text">{{ destination.description }}</p>
                 <p><span>Arrival date: </span>{{ destination.arrival_date}}</p>
                 <p><span>Departure date: </span>{{ destination.departure_date}}</p>
-                <a href="{{ destination.id }}" type="button" class="btn btn-primary">View Details</a>
+                <a href="{{ destination.id }}" type="button" class="btn btn-primary align-self-end">View Details</a>
             </div>
         </div>
     {% endfor %}

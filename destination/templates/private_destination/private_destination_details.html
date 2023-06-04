@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="../static/private_destination_details.css" />
+    <link rel="stylesheet" href="../../static/private_destination_details.css" />
 {% endblock %}
 {% block content %}
     <div class="private_destination_container">
@@ -9,8 +9,10 @@
         <div class="destination_info p-3">
             <h5 class="card-title">{{ destination.title }}</h5>
             <p class="card-text">{{ destination.description }}</p>
+            <p>{{ destination.geolocation }}</p>
             <p><span>Arrival date: </span>{{ destination.arrival_date}}</p>
             <p><span>Departure date: </span>{{ destination.departure_date}}</p>
+            <a href="{% url '' %}" type="button" class="btn btn-primary">Edit</a>
         </div>
     </div>
 {% endblock %}

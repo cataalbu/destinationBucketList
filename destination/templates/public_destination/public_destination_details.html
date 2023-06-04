@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="../../static/private_destination_details.css" />
+{% endblock %}
+{% block content %}
+    <div class="private_destination_container">
+        <img class="w-50" src="{{ destination.image }}" alt="Destination image">
+        <div class="destination_info p-3">
+            <h5 >{{ destination.title }}</h5>
+            <p>{{ destination.description }}</p>
+            <p><span>Geolocation: </span>{{ destination.geolocation }}</p>
+        </div>
+    </div>
+{% endblock %}

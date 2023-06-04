@@ -4,15 +4,12 @@ from django.contrib import messages
 # Create your views here.
 from django.views import View
 
-from destination.mvc.models.Destination import Destination
-from destination.mvc.models.User import GeneralUser, User, Admin
+from destination.models.User import GeneralUser
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sessions.backends.db import SessionStore
 
-from destination.mvc.services.LoginRequieredMixin import LoginRequiredMixin
-from destination.mvc.services.UserLoginRequired import UserLoginRequiredMixin
-from destination.mvc.services.AdminLoginRequired import AdminLoginRequiredMixin
+from destination.mixins.LoginRequiredMixin import LoginRequiredMixin
 
 
 class LoginView(View):

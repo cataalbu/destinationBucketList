@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<link href="../../static/public-destinations-list.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    {% if is_admin %}
+        <div class="w-100 p-3 d-flex flex-row-reverse">
+            <a href="{% url 'add_public_destination' %}" type="button" class="btn btn-primary">Add public destination</a>
+        </div>
+    {% endif %}
+<div class="public-destination-list-container">
+    {% for destination in destinations %}
+        <div class="card mr-5 mb-5" style="width: 20rem;">
+            <img class="card-img-top" src="{{ destination.image }}" alt="Card image cap">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ destination.title }}</h5>
+                <p class="card-text">{{ destination.description }}</p>
+                <div class="self-align-end" style="margin-top: auto">
+                     <a href="{{ destination.id }}" type="button" class="btn btn-primary">View Details</a>
+                    {% if not is_admin %}
+                        <a href="#" type="button"  class="btn btn-outline-primary">Add to private list</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
