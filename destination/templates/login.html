@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<form method="post" action="{% url 'LoginView' %}">
+<form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br>

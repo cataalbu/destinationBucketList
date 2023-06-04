@@ -1,0 +1,8 @@
+.private_destination_container {
+    display: flex;
+    max-width: 100vw;
+}
+.destination_info {
+    display: flex;
+    flex-direction: column;
+}

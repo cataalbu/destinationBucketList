@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="../static/private_destination_details.css" />
+{% endblock %}
+{% block content %}
+    <div class="private_destination_container">
+        <img class="w-50" src="{{ destination.image }}" alt="Destination image">
+        <div class="destination_info p-3">
+            <h5 class="card-title">{{ destination.title }}</h5>
+            <p class="card-text">{{ destination.description }}</p>
+            <p><span>Arrival date: </span>{{ destination.arrival_date}}</p>
+            <p><span>Departure date: </span>{{ destination.departure_date}}</p>
+        </div>
+    </div>
+{% endblock %}

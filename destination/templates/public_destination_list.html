@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 <div class="w-100 p-3 d-flex flex-row-reverse">
-    <a href="#" type="button" class="btn btn-primary">Add private destination</a>
+    <a href="#" type="button" class="btn btn-primary">Add public destination</a>
 </div>
 <div class="public-destination-list-container">
     {% for destination in destinations %}
@@ -14,9 +14,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{ destination.title }}</h5>
                 <p class="card-text">{{ destination.description }}</p>
-                <p><span>Arrival date: </span>{{ destination.arrival_date}}</p>
-                <p><span>Departure date: </span>{{ destination.departure_date}}</p>
-                <a href="{{ destination.id }}" type="button" class="btn btn-primary">View Details</a>
+                <a href="#" type="button" class="btn btn-primary">View Details</a>
+                <a href="#" type="button"  class="btn btn-outline-primary">Add to private list</a>
             </div>
         </div>
     {% endfor %}

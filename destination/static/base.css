@@ -1,0 +1,27 @@
+body {
+    font-family: 'Roboto';
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    background: #0081b8;
+    color: white;
+}
+.navigation-list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+.navigation-links {
+    text-decoration: none  !important;
+    margin-right: 16px;
+    color: white;
+}
+.navigation-links:hover{
+    color: #d3d3d3;
+}
+.title {
+    font-size: 24px;
+}

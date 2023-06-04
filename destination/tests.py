@@ -3,7 +3,7 @@ from django.test import TestCase, RequestFactory
 
 from destination.mvc.models.Destination import Destination
 from destination.mvc.models.User import GeneralUser
-from destination.mvc.view.GetPublicDestinationsView import GetPublicDestinationsView
+from destination.mvc.view.PublicDestinationListView import PublicDestinationsListView
 
 
 class GetPublicDestinationsViewTestCase(TestCase):
