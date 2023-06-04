@@ -1,19 +1,88 @@
-<!DOCTYPE html>
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-    <br>
-    <input type="submit" value="Login">
-</form>
+{#<!DOCTYPE html>#}
+{#<form method="post" action="{% url 'login' %}">#}
+{#    {% csrf_token %}#}
+{#    <label for="username">Username:</label>#}
+{#    <input type="text" id="username" name="username" required><br>#}
+{#    <br>#}
+{#    <label for="password">Password:</label>#}
+{#    <input type="password" id="password" name="password" required><br>#}
+{#    <br>#}
+{#    <input type="submit" value="Login">#}
+{#</form>#}
+{##}
+{#{% if messages %}#}
+{#    <ul class="messages">#}
+{#        {% for message in messages %}#}
+{#            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#{% endif %}#}
 
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .bg-image-vertical {
+position: relative;
+overflow: hidden;
+background-repeat: no-repeat;
+background-position: right center;
+background-size: auto 100%;
+}
+    </style>
+</head>
+<body>
+<section class="vh-100" style="background-color: #0081b8;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://i.pinimg.com/736x/14/89/0c/14890c244c33f73873fb0a5e0850e239.jpg"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form method="post" action="{% url 'login' %}">
+                     {% csrf_token %}
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Destination Bucket List</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+
+                  <div class="form-outline mb-4">
+                      <label class="form-label" for="username">Username</label>
+                      <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                      <label class="form-label" for="password">Password</label>
+                      <input id="password" name="password" type="password" required class="form-control form-control-lg" />
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
+

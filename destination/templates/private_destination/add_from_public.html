@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" class="p-3">
+    {% csrf_token %}
+        <div class="form-group">
+            <label for="arrival_date">Arrival Date:</label>
+            <input class="form-control" type="date" id="arrival_date" name="arrival_date"><br>
+        </div>
+        <div class="form-group">
+                <label for="departure_date">Departure Date:</label>
+                <input class="form-control" type="date" id="departure_date" name="departure_date"><br>
+        </div>
+
+        <button class="btn btn-primary" type="submit" >Add private destination</button>
+</form>
+{% endblock %}

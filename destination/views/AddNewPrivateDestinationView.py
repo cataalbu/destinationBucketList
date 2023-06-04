@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, resolve_url
 from destination.models.Destination import Destination
-from destination.mixins.LoginRequiredMixin import LoginRequiredMixin
+from destination.mixins.UserLoginRequired import UserLoginRequiredMixin
 
 
-class AddNewPrivateDestinationView(LoginRequiredMixin):
+class AddNewPrivateDestinationView(UserLoginRequiredMixin):
     def get(self, request):
         return render(request, 'private_destination/add_private_destination.html')
 
