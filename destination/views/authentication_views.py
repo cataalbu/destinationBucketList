@@ -9,7 +9,7 @@ from destination.models.user import GeneralUser
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sessions.backends.db import SessionStore
 
-from destination.mixins.LoginRequiredMixin import LoginRequiredMixin
+from destination.mixins.auth_mixins import LoginRequiredMixin
 
 
 class LoginView(View):

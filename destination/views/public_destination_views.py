@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView
 from destination.models.destination import Destination
-from destination.mixins.LoginRequiredMixin import LoginRequiredMixin
-from destination.mixins.AdminLoginRequired import AdminLoginRequiredMixin
+from destination.mixins.auth_mixins import LoginRequiredMixin, AdminLoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from destination.models.user import User
 
