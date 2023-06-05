@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, resolve_url
 from django.views import View
-from destination.models.user import User
+from destination.models.user import GeneralUser
 
 
 class LoginRequiredMixin(View):
@@ -23,7 +23,7 @@ class AdminLoginRequiredMixin(View):
         # session =
         if not session_key:
             return redirect(resolve_url('/login/'))
-        user = User.objects.get(id=user_id)
+        user = GeneralUser.objects.get(id=user_id)
         if not user.isAdmin:
             return redirect(resolve_url('/public-destinations/'))
         return super().dispatch(request, *args, **kwargs)
@@ -38,7 +38,7 @@ class UserLoginRequiredMixin(View):
         # session =
         if not session_key:
             return redirect(resolve_url('/login/'))
-        user = User.objects.get(id=user_id)
+        user = GeneralUser.objects.get(id=user_id)
         if user.isAdmin:
             return redirect(resolve_url('/public-destinations/'))
         return super().dispatch(request, *args, **kwargs)
