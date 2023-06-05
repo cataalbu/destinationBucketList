@@ -4,6 +4,7 @@ from destination.mixins.auth_mixins import UserLoginRequiredMixin
 from destination.models.user import User
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404
+from destination.forms import PrivateDestinationForm
 
 
 
@@ -31,19 +32,28 @@ class PrivateDestinationCreateFromPublicView(UserLoginRequiredMixin):
 class PrivateDestinationCreateView(UserLoginRequiredMixin):
 
     def get(self, request):
-        return render(request, 'private_destination/add_private_destination.html')
+        form = PrivateDestinationForm()
+        context = {'form': form}
+        return render(request, 'private_destination/add_private_destination.html', context)
 
     def post(self, request):
-        geolocation = request.POST.get('geolocation')
-        title = request.POST.get('title')
-        image = request.POST.get('image')
-        description = request.POST.get('description')
-        arrival_date = request.POST.get('arrival_date')
-        departure_date = request.POST.get('departure_date')
-        user_id = request.session.get('user_id')
-        destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
-                                  arrival_date=arrival_date, departure_date=departure_date, user_id=user_id, is_public=False)
-        destination.save()
+        form = PrivateDestinationForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            geolocation = request.POST.get('geolocation')
+            title = request.POST.get('title')
+            image = request.POST.get('image')
+            description = request.POST.get('description')
+            arrival_date = request.POST.get('arrival_date')
+            departure_date = request.POST.get('departure_date')
+            user_id = request.session.get('user_id')
+            destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
+                                      arrival_date=arrival_date, departure_date=departure_date, user_id=user_id,
+                                      is_public=False)
+            destination.save()
+        else:
+            print('not valid')
+
         return redirect(resolve_url('/private-destinations/'))
 
 

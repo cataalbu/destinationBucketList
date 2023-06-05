@@ -4,6 +4,7 @@ from destination.models.destination import Destination
 from destination.mixins.auth_mixins import LoginRequiredMixin, AdminLoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from destination.models.user import User
+from destination.forms import PublicDestinationForm
 
 
 class PublicDestinationDetailView(LoginRequiredMixin, DetailView):
@@ -29,17 +30,23 @@ class PublicDestinationsListView(LoginRequiredMixin):
 
 
 class PublicDestinationCreateView(AdminLoginRequiredMixin):
+
     def get(self, request):
-        return render(request, 'public_destination/add_public_destination.html')
+        form = PublicDestinationForm()
+        context = {'form': form}
+        return render(request, 'public_destination/add_public_destination.html', context)
 
     def post(self, request):
-        geolocation = request.POST.get('geolocation')
-        title = request.POST.get('title')
-        image = request.POST.get('image')
-        description = request.POST.get('description')
+        form = PublicDestinationForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            geolocation = request.POST.get('geolocation')
+            title = request.POST.get('title')
+            image = request.POST.get('image')
+            description = request.POST.get('description')
 
-        destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
-                                  arrival_date=None, departure_date=None, user_id=None, is_public=True)
-        destination.save()
+            destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
+                                      arrival_date=None, departure_date=None, user_id=None, is_public=True)
+            destination.save()
 
-        return redirect(resolve_url('/public-destinations/'))
+            return redirect(resolve_url('/public-destinations/', context))
