@@ -4,29 +4,37 @@ from destination.mixins.auth_mixins import UserLoginRequiredMixin
 from destination.models.user import User
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404
-from destination.forms import PrivateDestinationForm
+from destination.forms import PrivateDestinationForm, PrivateDestinationFromPublicForm
 
 
 
 class PrivateDestinationCreateFromPublicView(UserLoginRequiredMixin):
 
     def get(self, request, id):
-        return render(request, 'private_destination/add_from_public.html')
+        form = PrivateDestinationFromPublicForm()
+        context = {'form': form}
+        return render(request, 'private_destination/add_from_public.html', context)
 
     @staticmethod
     def post(request, id):
-        destination = Destination.objects.get(id=id)
-        geolocation = destination.geolocation
-        title = destination.title
-        image = destination.image
-        description = destination.description
-        arrival_date = request.POST.get('arrival_date')
-        departure_date = request.POST.get('departure_date')
-        user_id = request.session.get('user_id')
-        destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
-                                  arrival_date=arrival_date, departure_date=departure_date, user_id=user_id, is_public=False)
-        destination.save()
-        return redirect(resolve_url('/private-destinations/'))
+        form = PrivateDestinationFromPublicForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            destination = Destination.objects.get(id=id)
+            geolocation = destination.geolocation
+            title = destination.title
+            image = destination.image
+            description = destination.description
+            arrival_date = request.POST.get('arrival_date')
+            departure_date = request.POST.get('departure_date')
+            user_id = request.session.get('user_id')
+            destination = Destination(geolocation=geolocation, title=title, image=image, description=description,
+                                      arrival_date=arrival_date, departure_date=departure_date, user_id=user_id, is_public=False)
+            destination.save()
+            return redirect(resolve_url('/private-destinations/'))
+        else:
+            print('not valid')
+            return render(request, 'private_destination/add_from_public.html', context)
 
 
 class PrivateDestinationCreateView(UserLoginRequiredMixin):
@@ -51,10 +59,10 @@ class PrivateDestinationCreateView(UserLoginRequiredMixin):
                                       arrival_date=arrival_date, departure_date=departure_date, user_id=user_id,
                                       is_public=False)
             destination.save()
+            return redirect(resolve_url('/private-destinations/'))
         else:
             print('not valid')
-
-        return redirect(resolve_url('/private-destinations/'))
+            return render(request, 'private_destination/add_private_destination.html', context)
 
 
 class PrivateDestinationListView(UserLoginRequiredMixin):

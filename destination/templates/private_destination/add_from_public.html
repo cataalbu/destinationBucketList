@@ -3,15 +3,21 @@
 {% block content %}
     <form method="post" class="p-3">
     {% csrf_token %}
-        <div class="form-group">
-            <label for="arrival_date">Arrival Date:</label>
-            <input class="form-control" type="date" id="arrival_date" name="arrival_date"><br>
-        </div>
-        <div class="form-group">
-                <label for="departure_date">Departure Date:</label>
-                <input class="form-control" type="date" id="departure_date" name="departure_date"><br>
-        </div>
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
+            </div>
+        {% endfor %}
 
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+{% endif %}
         <button class="btn btn-primary" type="submit" >Add private destination</button>
 </form>
 {% endblock %}
