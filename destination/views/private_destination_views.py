@@ -12,13 +12,13 @@ class PrivateDestinationCreateFromPublicView(UserLoginRequiredMixin):
 
     def get(self, request, id):
         form = PrivateDestinationFromPublicForm()
-        context = {'form': form}
+        context = {'form': form, 'is_admin': False}
         return render(request, 'private_destination/add_from_public.html', context)
 
     @staticmethod
     def post(request, id):
         form = PrivateDestinationFromPublicForm(request.POST)
-        context = {'form': form}
+        context = {'form': form, 'is_admin': False}
         if form.is_valid():
             destination = Destination.objects.get(id=id)
             geolocation = destination.geolocation
@@ -41,7 +41,7 @@ class PrivateDestinationCreateView(UserLoginRequiredMixin):
 
     def get(self, request):
         form = PrivateDestinationForm()
-        context = {'form': form}
+        context = {'form': form, 'is_admin': False}
         return render(request, 'private_destination/add_private_destination.html', context)
 
     def post(self, request):
@@ -77,6 +77,11 @@ class PrivateDestinationListView(UserLoginRequiredMixin):
 
 class PrivateDestinationDetailView(UserLoginRequiredMixin, DetailView):
     template_name = 'private_destination/private_destination_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)  # get the default context data
+        context['is_admin'] = False  # add extra data to the context
+        return context
 
     def get_queryset(self):
         user_id = self.request.session.get('user_id')

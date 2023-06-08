@@ -10,6 +10,11 @@ from destination.forms import PublicDestinationForm
 class PublicDestinationDetailView(LoginRequiredMixin, DetailView):
     template_name = 'public_destination/public_destination_details.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)  # get the default context data
+        context['is_admin'] = True  # add extra data to the context
+        return context
+
     def get_queryset(self):
         user_id = self.request.session.get('user_id')
         return Destination.objects.filter(is_public=True)
@@ -33,7 +38,7 @@ class PublicDestinationCreateView(AdminLoginRequiredMixin):
 
     def get(self, request):
         form = PublicDestinationForm()
-        context = {'form': form}
+        context = {'form': form, 'is_admin': True}
         return render(request, 'public_destination/add_public_destination.html', context)
 
     def post(self, request):
